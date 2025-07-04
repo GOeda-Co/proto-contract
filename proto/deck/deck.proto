@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package card;
-
-option go_package = "repeatro.card.v1;cardv1";
-
-
