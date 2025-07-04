@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package card;
+
+option go_package = "repeatro.card.v1;cardv1";
+
+import "google/protobuf/timestamp.proto";
+
+// The Card service provides endpoints for managing user-created cards
+service CardService {
+  rpc AddCard(AddCardRequest) returns (AddCardResponse);
+  rpc ReadAllCards(ReadAllCardsRequest) returns (ReadAllCardsResponse);
+  rpc UpdateCard(UpdateCardRequest) returns (UpdateCardResponse);
+  rpc DeleteCard(DeleteCardRequest) returns (DeleteCardResponse);
+  rpc AddAnswers(AddAnswersRequest) returns (AddAnswersResponse);
+}
+
+// Message for a Card
+message Card {
+  string card_id = 1;
+  string created_by = 2;
+  google.protobuf.Timestamp created_at = 3;
+  string word = 4;
+  string translation = 5;
+  double easiness = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  int32 interval = 8;
+  google.protobuf.Timestamp expires_at = 9;
+  int32 repetition_number = 10;
+  string deck_id = 11;
+  repeated string tags = 12;
+}
+
+// Request and response for AddCard
+message AddCardRequest {
+  Card card = 1;
+}
+
+message AddCardResponse {
+  Card card = 1;
+}
+
+// Request and response for ReadAllCards
+message ReadAllCardsRequest {
+  string user_id = 1;
+}
+
+message ReadAllCardsResponse {
+  repeated Card cards = 1;
+}
+
+// Request and response for UpdateCard
+message UpdateCardRequest {
+  string word = 1;
+  string translation = 2;
+  double easiness = 3;
+  google.protobuf.Timestamp updated_at = 4;
+  int32 interval = 5;
+  google.protobuf.Timestamp expires_at = 6;
+  int32 repetition_number = 7;
+  repeated string tags = 8;
+}
+
+message UpdateCardResponse {
+  Card card = 1;
+}
+
+// Request and response for DeleteCard
+message DeleteCardRequest {
+  string card_id = 1;
+}
+
+message DeleteCardResponse {
+  bool success = 1;
+}
+
+// Message for Answer
+message Answer {
+  string card_id = 1; // UUID as string
+  int32 grade = 2;
+}
+
+// Request and response for AddAnswers
+message AddAnswersRequest {
+  string user_id = 1;
+  repeated Answer answers = 2;
+}
+
+message AddAnswersResponse {
+  string message = 1;
+}
