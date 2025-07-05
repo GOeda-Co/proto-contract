@@ -51,14 +51,16 @@ message ReadAllCardsResponse {
 
 // Request and response for UpdateCard
 message UpdateCardRequest {
-  string word = 1;
-  string translation = 2;
-  double easiness = 3;
-  google.protobuf.Timestamp updated_at = 4;
-  int32 interval = 5;
-  google.protobuf.Timestamp expires_at = 6;
-  int32 repetition_number = 7;
-  repeated string tags = 8;
+  string card_id = 1;
+  string word = 2;
+  string translation = 3;
+  double easiness = 4;
+  google.protobuf.Timestamp updated_at = 5;
+  int32 interval = 6;
+  google.protobuf.Timestamp expires_at = 7;
+  int32 repetition_number = 8;
+  repeated string tags = 9;
+  string user_id = 10;
 }
 
 message UpdateCardResponse {
@@ -68,6 +70,7 @@ message UpdateCardResponse {
 // Request and response for DeleteCard
 message DeleteCardRequest {
   string card_id = 1;
+  string user_id = 2;
 }
 
 message DeleteCardResponse {
