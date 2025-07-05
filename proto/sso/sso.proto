@@ -20,7 +20,6 @@ service Auth {
 //    GetUserPermissions(GetUserPermissionsRequest) return UserPermissions
 // }
 
-// Объект, который отправляется при вызове RPC-метода (ручки) Register.
 message RegisterRequest {
   string email = 1; // Email of the user to register.
   string password = 2; // Password of the user to register.
