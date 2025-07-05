@@ -336,14 +336,16 @@ func (x *ReadAllCardsResponse) GetCards() []*Card {
 // Request and response for UpdateCard
 type UpdateCardRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Word             string                 `protobuf:"bytes,1,opt,name=word,proto3" json:"word,omitempty"`
-	Translation      string                 `protobuf:"bytes,2,opt,name=translation,proto3" json:"translation,omitempty"`
-	Easiness         float64                `protobuf:"fixed64,3,opt,name=easiness,proto3" json:"easiness,omitempty"`
-	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Interval         int32                  `protobuf:"varint,5,opt,name=interval,proto3" json:"interval,omitempty"`
-	ExpiresAt        *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	RepetitionNumber int32                  `protobuf:"varint,7,opt,name=repetition_number,json=repetitionNumber,proto3" json:"repetition_number,omitempty"`
-	Tags             []string               `protobuf:"bytes,8,rep,name=tags,proto3" json:"tags,omitempty"`
+	CardId           string                 `protobuf:"bytes,1,opt,name=card_id,json=cardId,proto3" json:"card_id,omitempty"`
+	Word             string                 `protobuf:"bytes,2,opt,name=word,proto3" json:"word,omitempty"`
+	Translation      string                 `protobuf:"bytes,3,opt,name=translation,proto3" json:"translation,omitempty"`
+	Easiness         float64                `protobuf:"fixed64,4,opt,name=easiness,proto3" json:"easiness,omitempty"`
+	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Interval         int32                  `protobuf:"varint,6,opt,name=interval,proto3" json:"interval,omitempty"`
+	ExpiresAt        *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	RepetitionNumber int32                  `protobuf:"varint,8,opt,name=repetition_number,json=repetitionNumber,proto3" json:"repetition_number,omitempty"`
+	Tags             []string               `protobuf:"bytes,9,rep,name=tags,proto3" json:"tags,omitempty"`
+	UserId           string                 `protobuf:"bytes,10,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -376,6 +378,13 @@ func (x *UpdateCardRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UpdateCardRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCardRequest) Descriptor() ([]byte, []int) {
 	return file_card_card_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *UpdateCardRequest) GetCardId() string {
+	if x != nil {
+		return x.CardId
+	}
+	return ""
 }
 
 func (x *UpdateCardRequest) GetWord() string {
@@ -434,6 +443,13 @@ func (x *UpdateCardRequest) GetTags() []string {
 	return nil
 }
 
+func (x *UpdateCardRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
 type UpdateCardResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Card          *Card                  `protobuf:"bytes,1,opt,name=card,proto3" json:"card,omitempty"`
@@ -482,6 +498,7 @@ func (x *UpdateCardResponse) GetCard() *Card {
 type DeleteCardRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CardId        string                 `protobuf:"bytes,1,opt,name=card_id,json=cardId,proto3" json:"card_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -519,6 +536,13 @@ func (*DeleteCardRequest) Descriptor() ([]byte, []int) {
 func (x *DeleteCardRequest) GetCardId() string {
 	if x != nil {
 		return x.CardId
+	}
+	return ""
+}
+
+func (x *DeleteCardRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
 	}
 	return ""
 }
@@ -750,23 +774,27 @@ const file_card_card_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"8\n" +
 	"\x14ReadAllCardsResponse\x12 \n" +
 	"\x05cards\x18\x01 \x03(\v2\n" +
-	".card.CardR\x05cards\"\xb8\x02\n" +
-	"\x11UpdateCardRequest\x12\x12\n" +
-	"\x04word\x18\x01 \x01(\tR\x04word\x12 \n" +
-	"\vtranslation\x18\x02 \x01(\tR\vtranslation\x12\x1a\n" +
-	"\beasiness\x18\x03 \x01(\x01R\beasiness\x129\n" +
+	".card.CardR\x05cards\"\xea\x02\n" +
+	"\x11UpdateCardRequest\x12\x17\n" +
+	"\acard_id\x18\x01 \x01(\tR\x06cardId\x12\x12\n" +
+	"\x04word\x18\x02 \x01(\tR\x04word\x12 \n" +
+	"\vtranslation\x18\x03 \x01(\tR\vtranslation\x12\x1a\n" +
+	"\beasiness\x18\x04 \x01(\x01R\beasiness\x129\n" +
 	"\n" +
-	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x1a\n" +
-	"\binterval\x18\x05 \x01(\x05R\binterval\x129\n" +
+	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x1a\n" +
+	"\binterval\x18\x06 \x01(\x05R\binterval\x129\n" +
 	"\n" +
-	"expires_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12+\n" +
-	"\x11repetition_number\x18\a \x01(\x05R\x10repetitionNumber\x12\x12\n" +
-	"\x04tags\x18\b \x03(\tR\x04tags\"4\n" +
+	"expires_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12+\n" +
+	"\x11repetition_number\x18\b \x01(\x05R\x10repetitionNumber\x12\x12\n" +
+	"\x04tags\x18\t \x03(\tR\x04tags\x12\x17\n" +
+	"\auser_id\x18\n" +
+	" \x01(\tR\x06userId\"4\n" +
 	"\x12UpdateCardResponse\x12\x1e\n" +
 	"\x04card\x18\x01 \x01(\v2\n" +
-	".card.CardR\x04card\",\n" +
+	".card.CardR\x04card\"E\n" +
 	"\x11DeleteCardRequest\x12\x17\n" +
-	"\acard_id\x18\x01 \x01(\tR\x06cardId\".\n" +
+	"\acard_id\x18\x01 \x01(\tR\x06cardId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\".\n" +
 	"\x12DeleteCardResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"7\n" +
 	"\x06Answer\x12\x17\n" +
