@@ -1,4 +1,4 @@
-module github.com/tomatoCoderq/proto-contract
+module github.com/GOeda-Co/proto-contract
 
 go 1.24.0
 
