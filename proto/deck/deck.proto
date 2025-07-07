@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package deck;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+// import "proto/card/card.proto";
+
+option go_package = "repeatro.deck.v1;deckv1";
+
+service DeckService {
+  rpc AddDeck(AddDeckRequest) returns (DeckResponse);
+  rpc ReadAllDecks(UserRequest) returns (DeckListResponse);
+  rpc ReadDeck(ReadDeckRequest) returns (DeckResponse);
+  rpc DeleteDeck(ReadDeckRequest) returns (google.protobuf.Empty);
+  rpc AddCardToDeck(AddCardToDeckRequest) returns (google.protobuf.Empty);
+  rpc ReadCardsFromDeck(ReadDeckRequest) returns (CardListResponse);
+}
+
+message UserRequest {
+  string user_id = 1;
+}
+
+message AddDeckRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message ReadDeckRequest {
+  string deck_id = 1;
+}
+
+message AddCardToDeckRequest {
+  string card_id = 1;
+  string deck_id = 2;
+}
+
+message DeckResponse {
+  Deck deck = 1;
+}
+
+message DeckListResponse {
+  repeated Deck decks = 1;
+}
+
+message CardListResponse {
+  repeated Card cards = 1;
+}
+
+message Deck {
+  string deck_id = 1;
+  string created_by = 2;
+  google.protobuf.Timestamp created_at = 3;
+  string name = 4;
+  string description = 5;
+  repeated Card cards = 6;
+}
+
+message Card {
+  string card_id = 1;
+  string created_by = 2;
+  google.protobuf.Timestamp created_at = 3;
+  string word = 4;
+  string translation = 5;
+  double easiness = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  int32 interval = 8;
+  google.protobuf.Timestamp expires_at = 9;
+  int32 repetition_number = 10;
+  string deck_id = 11;
+  repeated string tags = 12;
+}
