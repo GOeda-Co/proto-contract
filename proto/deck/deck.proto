@@ -10,15 +10,11 @@ option go_package = "repeatro.deck.v1;deckv1";
 
 service DeckService {
   rpc AddDeck(AddDeckRequest) returns (DeckResponse);
-  rpc ReadAllDecks(UserRequest) returns (DeckListResponse);
+  rpc ReadAllDecks(google.protobuf.Empty) returns (DeckListResponse);
   rpc ReadDeck(ReadDeckRequest) returns (DeckResponse);
   rpc DeleteDeck(ReadDeckRequest) returns (google.protobuf.Empty);
   rpc AddCardToDeck(AddCardToDeckRequest) returns (google.protobuf.Empty);
   rpc ReadCardsFromDeck(ReadDeckRequest) returns (CardListResponse);
-}
-
-message UserRequest {
-  string user_id = 1;
 }
 
 message AddDeckRequest {
