@@ -647,8 +647,7 @@ func (x *Answer) GetGrade() int32 {
 // Request and response for AddAnswers
 type AddAnswersRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Answers       []*Answer              `protobuf:"bytes,2,rep,name=answers,proto3" json:"answers,omitempty"`
+	Answers       []*Answer              `protobuf:"bytes,1,rep,name=answers,proto3" json:"answers,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -681,13 +680,6 @@ func (x *AddAnswersRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AddAnswersRequest.ProtoReflect.Descriptor instead.
 func (*AddAnswersRequest) Descriptor() ([]byte, []int) {
 	return file_card_card_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *AddAnswersRequest) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
 }
 
 func (x *AddAnswersRequest) GetAnswers() []*Answer {
@@ -799,10 +791,9 @@ const file_card_card_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"7\n" +
 	"\x06Answer\x12\x17\n" +
 	"\acard_id\x18\x01 \x01(\tR\x06cardId\x12\x14\n" +
-	"\x05grade\x18\x02 \x01(\x05R\x05grade\"T\n" +
-	"\x11AddAnswersRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12&\n" +
-	"\aanswers\x18\x02 \x03(\v2\f.card.AnswerR\aanswers\".\n" +
+	"\x05grade\x18\x02 \x01(\x05R\x05grade\";\n" +
+	"\x11AddAnswersRequest\x12&\n" +
+	"\aanswers\x18\x01 \x03(\v2\f.card.AnswerR\aanswers\".\n" +
 	"\x12AddAnswersResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage2\xcf\x02\n" +
 	"\vCardService\x126\n" +

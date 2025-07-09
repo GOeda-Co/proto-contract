@@ -85,8 +85,7 @@ message Answer {
 
 // Request and response for AddAnswers
 message AddAnswersRequest {
-  string user_id = 1;
-  repeated Answer answers = 2;
+  repeated Answer answers = 1;
 }
 
 message AddAnswersResponse {
