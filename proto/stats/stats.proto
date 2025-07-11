@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package stats;
+
+option go_package = "repeatro.stats.v1;statsv1";
+
+service StatService {
+    rpc GetAverageGrade(GetAverageGradeRequest) returns (GetAverageGradeResponse);
+    rpc GetCardsReviewedCount(GetCardsReviewedCountRequest) returns (GetCardsReviewedCountResponse);
+    rpc GetCardsLearnedCount(GetCardsLearnedCountRequest) returns (GetCardsLearnedCountResponse);
+}
+
+message GetAverageGradeRequest {
+  string user_id = 1;
+  string deck_id = 2; // this field is optional
+  TimeRange time_range = 3;
+}
+
+message GetAverageGradeResponse {
+  double average_grade = 1;
+}
+
+
+message GetCardsReviewedCountRequest {
+  string user_id = 1;
+  string deck_id = 2; // this field is optional
+  TimeRange time_range = 3;
+}
+
+message GetCardsReviewedCountResponse {
+  int32 reviewed_count = 1;
+}
+
+
+message GetCardsLearnedCountRequest {
+  string user_id = 1;
+  string deck_id = 2; // this field is optional
+  TimeRange time_range = 3;
+}
+
+message GetCardsLearnedCountResponse {
+  int32 learned_count = 1;
+}
+
+enum TimeRange {
+  TIME_RANGE_UNSPECIFIED = 0;
+  DAILY = 1;
+  WEEKLY = 2;
+  MONTHLY = 3;
+}
