@@ -23,6 +23,7 @@ service Auth {
 message RegisterRequest {
   string email = 1; // Email of the user to register.
   string password = 2; // Password of the user to register.
+  string name = 3;
 }
 
 // Объект, который метод (ручка) вернёт.
