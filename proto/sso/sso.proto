@@ -4,6 +4,8 @@ package auth;
 
 option go_package = "auth_microservice.sso.v1;ssov1";
 
+import "google/protobuf/empty.proto";
+
 // Auth is service for managing permissions and roles.
 service Auth {
   // Register registers a new user.
@@ -12,13 +14,9 @@ service Auth {
   rpc Login (LoginRequest) returns (LoginResponse);
   // IsAdmin check that user has access for special functionality
   rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
+  //FetcheMe sends current user information
+  rpc FetchMe (google.protobuf.Empty) returns (FetchMeResponse);
 }
-
-// TODO: На будущее, следующий сервис можно описать прямо здесь,
-// либо вынести в отдельный файл
-// service Permissions {
-//    GetUserPermissions(GetUserPermissionsRequest) return UserPermissions
-// }
 
 message RegisterRequest {
   string email = 1; // Email of the user to register.
@@ -49,3 +47,10 @@ message IsAdminRequest {
 message IsAdminResponse {
   bool is_admin = 1;
 }
+
+message FetchMeResponse {
+  string user_id = 1;
+  string email = 2;
+  string name = 3;
+}
+
