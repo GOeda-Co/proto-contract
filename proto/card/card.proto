@@ -9,7 +9,10 @@ import "google/protobuf/timestamp.proto";
 // The Card service provides endpoints for managing user-created cards
 service CardService {
   rpc AddCard(AddCardRequest) returns (AddCardResponse);
+  // This method shows all cards that are ready for learning (expires_time < time.now())
   rpc ReadAllCards(ReadAllCardsRequest) returns (ReadAllCardsResponse);
+  // This method shows all cards that were created by user
+  rpc ReadAllCardsByUser(ReadAllCardsByUserRequest) returns (ReadAllCardsByUserResponse);
   rpc UpdateCard(UpdateCardRequest) returns (UpdateCardResponse);
   rpc DeleteCard(DeleteCardRequest) returns (DeleteCardResponse);
   rpc AddAnswers(AddAnswersRequest) returns (AddAnswersResponse);
@@ -45,9 +48,19 @@ message ReadAllCardsRequest {
   string user_id = 1;
 }
 
+
 message ReadAllCardsResponse {
   repeated Card cards = 1;
 }
+
+message ReadAllCardsByUserRequest {
+  string user_id = 1;
+}
+
+message ReadAllCardsByUserResponse {
+  repeated Card cards = 1;
+}
+
 
 // Request and response for UpdateCard
 message UpdateCardRequest {

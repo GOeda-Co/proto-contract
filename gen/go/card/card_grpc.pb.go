@@ -19,11 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CardService_AddCard_FullMethodName      = "/card.CardService/AddCard"
-	CardService_ReadAllCards_FullMethodName = "/card.CardService/ReadAllCards"
-	CardService_UpdateCard_FullMethodName   = "/card.CardService/UpdateCard"
-	CardService_DeleteCard_FullMethodName   = "/card.CardService/DeleteCard"
-	CardService_AddAnswers_FullMethodName   = "/card.CardService/AddAnswers"
+	CardService_AddCard_FullMethodName            = "/card.CardService/AddCard"
+	CardService_ReadAllCards_FullMethodName       = "/card.CardService/ReadAllCards"
+	CardService_ReadAllCardsByUser_FullMethodName = "/card.CardService/ReadAllCardsByUser"
+	CardService_UpdateCard_FullMethodName         = "/card.CardService/UpdateCard"
+	CardService_DeleteCard_FullMethodName         = "/card.CardService/DeleteCard"
+	CardService_AddAnswers_FullMethodName         = "/card.CardService/AddAnswers"
 )
 
 // CardServiceClient is the client API for CardService service.
@@ -33,7 +34,10 @@ const (
 // The Card service provides endpoints for managing user-created cards
 type CardServiceClient interface {
 	AddCard(ctx context.Context, in *AddCardRequest, opts ...grpc.CallOption) (*AddCardResponse, error)
+	// This method shows all cards that are ready for learning (expires_time < time.now())
 	ReadAllCards(ctx context.Context, in *ReadAllCardsRequest, opts ...grpc.CallOption) (*ReadAllCardsResponse, error)
+	// This method shows all cards that were created by user
+	ReadAllCardsByUser(ctx context.Context, in *ReadAllCardsByUserRequest, opts ...grpc.CallOption) (*ReadAllCardsByUserResponse, error)
 	UpdateCard(ctx context.Context, in *UpdateCardRequest, opts ...grpc.CallOption) (*UpdateCardResponse, error)
 	DeleteCard(ctx context.Context, in *DeleteCardRequest, opts ...grpc.CallOption) (*DeleteCardResponse, error)
 	AddAnswers(ctx context.Context, in *AddAnswersRequest, opts ...grpc.CallOption) (*AddAnswersResponse, error)
@@ -61,6 +65,16 @@ func (c *cardServiceClient) ReadAllCards(ctx context.Context, in *ReadAllCardsRe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ReadAllCardsResponse)
 	err := c.cc.Invoke(ctx, CardService_ReadAllCards_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cardServiceClient) ReadAllCardsByUser(ctx context.Context, in *ReadAllCardsByUserRequest, opts ...grpc.CallOption) (*ReadAllCardsByUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReadAllCardsByUserResponse)
+	err := c.cc.Invoke(ctx, CardService_ReadAllCardsByUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -104,7 +118,10 @@ func (c *cardServiceClient) AddAnswers(ctx context.Context, in *AddAnswersReques
 // The Card service provides endpoints for managing user-created cards
 type CardServiceServer interface {
 	AddCard(context.Context, *AddCardRequest) (*AddCardResponse, error)
+	// This method shows all cards that are ready for learning (expires_time < time.now())
 	ReadAllCards(context.Context, *ReadAllCardsRequest) (*ReadAllCardsResponse, error)
+	// This method shows all cards that were created by user
+	ReadAllCardsByUser(context.Context, *ReadAllCardsByUserRequest) (*ReadAllCardsByUserResponse, error)
 	UpdateCard(context.Context, *UpdateCardRequest) (*UpdateCardResponse, error)
 	DeleteCard(context.Context, *DeleteCardRequest) (*DeleteCardResponse, error)
 	AddAnswers(context.Context, *AddAnswersRequest) (*AddAnswersResponse, error)
@@ -123,6 +140,9 @@ func (UnimplementedCardServiceServer) AddCard(context.Context, *AddCardRequest) 
 }
 func (UnimplementedCardServiceServer) ReadAllCards(context.Context, *ReadAllCardsRequest) (*ReadAllCardsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadAllCards not implemented")
+}
+func (UnimplementedCardServiceServer) ReadAllCardsByUser(context.Context, *ReadAllCardsByUserRequest) (*ReadAllCardsByUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadAllCardsByUser not implemented")
 }
 func (UnimplementedCardServiceServer) UpdateCard(context.Context, *UpdateCardRequest) (*UpdateCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateCard not implemented")
@@ -186,6 +206,24 @@ func _CardService_ReadAllCards_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CardServiceServer).ReadAllCards(ctx, req.(*ReadAllCardsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CardService_ReadAllCardsByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadAllCardsByUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CardServiceServer).ReadAllCardsByUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CardService_ReadAllCardsByUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CardServiceServer).ReadAllCardsByUser(ctx, req.(*ReadAllCardsByUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -258,6 +296,10 @@ var CardService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReadAllCards",
 			Handler:    _CardService_ReadAllCards_Handler,
+		},
+		{
+			MethodName: "ReadAllCardsByUser",
+			Handler:    _CardService_ReadAllCardsByUser_Handler,
 		},
 		{
 			MethodName: "UpdateCard",
