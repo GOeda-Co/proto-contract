@@ -9,6 +9,7 @@ package statsv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -281,6 +282,118 @@ func (x *GetCardsReviewedCountResponse) GetReviewedCount() int32 {
 	return 0
 }
 
+type AddRecordingRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CardId        string                 `protobuf:"bytes,1,opt,name=card_id,json=cardId,proto3" json:"card_id,omitempty"`
+	DeckId        string                 `protobuf:"bytes,2,opt,name=deck_id,json=deckId,proto3" json:"deck_id,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Grade         int32                  `protobuf:"varint,4,opt,name=grade,proto3" json:"grade,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddRecordingRequest) Reset() {
+	*x = AddRecordingRequest{}
+	mi := &file_stats_stats_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddRecordingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRecordingRequest) ProtoMessage() {}
+
+func (x *AddRecordingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_stats_stats_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRecordingRequest.ProtoReflect.Descriptor instead.
+func (*AddRecordingRequest) Descriptor() ([]byte, []int) {
+	return file_stats_stats_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *AddRecordingRequest) GetCardId() string {
+	if x != nil {
+		return x.CardId
+	}
+	return ""
+}
+
+func (x *AddRecordingRequest) GetDeckId() string {
+	if x != nil {
+		return x.DeckId
+	}
+	return ""
+}
+
+func (x *AddRecordingRequest) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *AddRecordingRequest) GetGrade() int32 {
+	if x != nil {
+		return x.Grade
+	}
+	return 0
+}
+
+type AddRecordingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ReviewId      int32                  `protobuf:"varint,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddRecordingResponse) Reset() {
+	*x = AddRecordingResponse{}
+	mi := &file_stats_stats_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddRecordingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRecordingResponse) ProtoMessage() {}
+
+func (x *AddRecordingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_stats_stats_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRecordingResponse.ProtoReflect.Descriptor instead.
+func (*AddRecordingResponse) Descriptor() ([]byte, []int) {
+	return file_stats_stats_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *AddRecordingResponse) GetReviewId() int32 {
+	if x != nil {
+		return x.ReviewId
+	}
+	return 0
+}
+
 type GetCardsLearnedCountRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -292,7 +405,7 @@ type GetCardsLearnedCountRequest struct {
 
 func (x *GetCardsLearnedCountRequest) Reset() {
 	*x = GetCardsLearnedCountRequest{}
-	mi := &file_stats_stats_proto_msgTypes[4]
+	mi := &file_stats_stats_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -304,7 +417,7 @@ func (x *GetCardsLearnedCountRequest) String() string {
 func (*GetCardsLearnedCountRequest) ProtoMessage() {}
 
 func (x *GetCardsLearnedCountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_stats_stats_proto_msgTypes[4]
+	mi := &file_stats_stats_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -317,7 +430,7 @@ func (x *GetCardsLearnedCountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCardsLearnedCountRequest.ProtoReflect.Descriptor instead.
 func (*GetCardsLearnedCountRequest) Descriptor() ([]byte, []int) {
-	return file_stats_stats_proto_rawDescGZIP(), []int{4}
+	return file_stats_stats_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetCardsLearnedCountRequest) GetUserId() string {
@@ -350,7 +463,7 @@ type GetCardsLearnedCountResponse struct {
 
 func (x *GetCardsLearnedCountResponse) Reset() {
 	*x = GetCardsLearnedCountResponse{}
-	mi := &file_stats_stats_proto_msgTypes[5]
+	mi := &file_stats_stats_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -362,7 +475,7 @@ func (x *GetCardsLearnedCountResponse) String() string {
 func (*GetCardsLearnedCountResponse) ProtoMessage() {}
 
 func (x *GetCardsLearnedCountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_stats_stats_proto_msgTypes[5]
+	mi := &file_stats_stats_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -375,7 +488,7 @@ func (x *GetCardsLearnedCountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCardsLearnedCountResponse.ProtoReflect.Descriptor instead.
 func (*GetCardsLearnedCountResponse) Descriptor() ([]byte, []int) {
-	return file_stats_stats_proto_rawDescGZIP(), []int{5}
+	return file_stats_stats_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetCardsLearnedCountResponse) GetLearnedCount() int32 {
@@ -389,7 +502,7 @@ var File_stats_stats_proto protoreflect.FileDescriptor
 
 const file_stats_stats_proto_rawDesc = "" +
 	"\n" +
-	"\x11stats/stats.proto\x12\x05stats\"{\n" +
+	"\x11stats/stats.proto\x12\x05stats\x1a\x1fgoogle/protobuf/timestamp.proto\"{\n" +
 	"\x16GetAverageGradeRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\adeck_id\x18\x02 \x01(\tR\x06deckId\x12/\n" +
@@ -403,7 +516,15 @@ const file_stats_stats_proto_rawDesc = "" +
 	"\n" +
 	"time_range\x18\x03 \x01(\x0e2\x10.stats.TimeRangeR\ttimeRange\"F\n" +
 	"\x1dGetCardsReviewedCountResponse\x12%\n" +
-	"\x0ereviewed_count\x18\x01 \x01(\x05R\rreviewedCount\"\x80\x01\n" +
+	"\x0ereviewed_count\x18\x01 \x01(\x05R\rreviewedCount\"\x98\x01\n" +
+	"\x13AddRecordingRequest\x12\x17\n" +
+	"\acard_id\x18\x01 \x01(\tR\x06cardId\x12\x17\n" +
+	"\adeck_id\x18\x02 \x01(\tR\x06deckId\x129\n" +
+	"\n" +
+	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x14\n" +
+	"\x05grade\x18\x04 \x01(\x05R\x05grade\"3\n" +
+	"\x14AddRecordingResponse\x12\x1b\n" +
+	"\treview_id\x18\x01 \x01(\x05R\breviewId\"\x80\x01\n" +
 	"\x1bGetCardsLearnedCountRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\adeck_id\x18\x02 \x01(\tR\x06deckId\x12/\n" +
@@ -416,10 +537,11 @@ const file_stats_stats_proto_rawDesc = "" +
 	"\x05DAILY\x10\x01\x12\n" +
 	"\n" +
 	"\x06WEEKLY\x10\x02\x12\v\n" +
-	"\aMONTHLY\x10\x032\xa4\x02\n" +
+	"\aMONTHLY\x10\x032\xed\x02\n" +
 	"\vStatService\x12P\n" +
 	"\x0fGetAverageGrade\x12\x1d.stats.GetAverageGradeRequest\x1a\x1e.stats.GetAverageGradeResponse\x12b\n" +
-	"\x15GetCardsReviewedCount\x12#.stats.GetCardsReviewedCountRequest\x1a$.stats.GetCardsReviewedCountResponse\x12_\n" +
+	"\x15GetCardsReviewedCount\x12#.stats.GetCardsReviewedCountRequest\x1a$.stats.GetCardsReviewedCountResponse\x12G\n" +
+	"\fAddRecording\x12\x1a.stats.AddRecordingRequest\x1a\x1b.stats.AddRecordingResponse\x12_\n" +
 	"\x14GetCardsLearnedCount\x12\".stats.GetCardsLearnedCountRequest\x1a#.stats.GetCardsLearnedCountResponseB\x1bZ\x19repeatro.stats.v1;statsv1b\x06proto3"
 
 var (
@@ -435,31 +557,37 @@ func file_stats_stats_proto_rawDescGZIP() []byte {
 }
 
 var file_stats_stats_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_stats_stats_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_stats_stats_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_stats_stats_proto_goTypes = []any{
 	(TimeRange)(0),                        // 0: stats.TimeRange
 	(*GetAverageGradeRequest)(nil),        // 1: stats.GetAverageGradeRequest
 	(*GetAverageGradeResponse)(nil),       // 2: stats.GetAverageGradeResponse
 	(*GetCardsReviewedCountRequest)(nil),  // 3: stats.GetCardsReviewedCountRequest
 	(*GetCardsReviewedCountResponse)(nil), // 4: stats.GetCardsReviewedCountResponse
-	(*GetCardsLearnedCountRequest)(nil),   // 5: stats.GetCardsLearnedCountRequest
-	(*GetCardsLearnedCountResponse)(nil),  // 6: stats.GetCardsLearnedCountResponse
+	(*AddRecordingRequest)(nil),           // 5: stats.AddRecordingRequest
+	(*AddRecordingResponse)(nil),          // 6: stats.AddRecordingResponse
+	(*GetCardsLearnedCountRequest)(nil),   // 7: stats.GetCardsLearnedCountRequest
+	(*GetCardsLearnedCountResponse)(nil),  // 8: stats.GetCardsLearnedCountResponse
+	(*timestamppb.Timestamp)(nil),         // 9: google.protobuf.Timestamp
 }
 var file_stats_stats_proto_depIdxs = []int32{
 	0, // 0: stats.GetAverageGradeRequest.time_range:type_name -> stats.TimeRange
 	0, // 1: stats.GetCardsReviewedCountRequest.time_range:type_name -> stats.TimeRange
-	0, // 2: stats.GetCardsLearnedCountRequest.time_range:type_name -> stats.TimeRange
-	1, // 3: stats.StatService.GetAverageGrade:input_type -> stats.GetAverageGradeRequest
-	3, // 4: stats.StatService.GetCardsReviewedCount:input_type -> stats.GetCardsReviewedCountRequest
-	5, // 5: stats.StatService.GetCardsLearnedCount:input_type -> stats.GetCardsLearnedCountRequest
-	2, // 6: stats.StatService.GetAverageGrade:output_type -> stats.GetAverageGradeResponse
-	4, // 7: stats.StatService.GetCardsReviewedCount:output_type -> stats.GetCardsReviewedCountResponse
-	6, // 8: stats.StatService.GetCardsLearnedCount:output_type -> stats.GetCardsLearnedCountResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	9, // 2: stats.AddRecordingRequest.created_at:type_name -> google.protobuf.Timestamp
+	0, // 3: stats.GetCardsLearnedCountRequest.time_range:type_name -> stats.TimeRange
+	1, // 4: stats.StatService.GetAverageGrade:input_type -> stats.GetAverageGradeRequest
+	3, // 5: stats.StatService.GetCardsReviewedCount:input_type -> stats.GetCardsReviewedCountRequest
+	5, // 6: stats.StatService.AddRecording:input_type -> stats.AddRecordingRequest
+	7, // 7: stats.StatService.GetCardsLearnedCount:input_type -> stats.GetCardsLearnedCountRequest
+	2, // 8: stats.StatService.GetAverageGrade:output_type -> stats.GetAverageGradeResponse
+	4, // 9: stats.StatService.GetCardsReviewedCount:output_type -> stats.GetCardsReviewedCountResponse
+	6, // 10: stats.StatService.AddRecording:output_type -> stats.AddRecordingResponse
+	8, // 11: stats.StatService.GetCardsLearnedCount:output_type -> stats.GetCardsLearnedCountResponse
+	8, // [8:12] is the sub-list for method output_type
+	4, // [4:8] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_stats_stats_proto_init() }
@@ -473,7 +601,7 @@ func file_stats_stats_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_stats_stats_proto_rawDesc), len(file_stats_stats_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

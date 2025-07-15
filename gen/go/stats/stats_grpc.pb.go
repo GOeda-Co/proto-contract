@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	StatService_GetAverageGrade_FullMethodName       = "/stats.StatService/GetAverageGrade"
 	StatService_GetCardsReviewedCount_FullMethodName = "/stats.StatService/GetCardsReviewedCount"
+	StatService_AddRecording_FullMethodName          = "/stats.StatService/AddRecording"
 	StatService_GetCardsLearnedCount_FullMethodName  = "/stats.StatService/GetCardsLearnedCount"
 )
 
@@ -30,6 +31,7 @@ const (
 type StatServiceClient interface {
 	GetAverageGrade(ctx context.Context, in *GetAverageGradeRequest, opts ...grpc.CallOption) (*GetAverageGradeResponse, error)
 	GetCardsReviewedCount(ctx context.Context, in *GetCardsReviewedCountRequest, opts ...grpc.CallOption) (*GetCardsReviewedCountResponse, error)
+	AddRecording(ctx context.Context, in *AddRecordingRequest, opts ...grpc.CallOption) (*AddRecordingResponse, error)
 	GetCardsLearnedCount(ctx context.Context, in *GetCardsLearnedCountRequest, opts ...grpc.CallOption) (*GetCardsLearnedCountResponse, error)
 }
 
@@ -61,6 +63,16 @@ func (c *statServiceClient) GetCardsReviewedCount(ctx context.Context, in *GetCa
 	return out, nil
 }
 
+func (c *statServiceClient) AddRecording(ctx context.Context, in *AddRecordingRequest, opts ...grpc.CallOption) (*AddRecordingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddRecordingResponse)
+	err := c.cc.Invoke(ctx, StatService_AddRecording_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *statServiceClient) GetCardsLearnedCount(ctx context.Context, in *GetCardsLearnedCountRequest, opts ...grpc.CallOption) (*GetCardsLearnedCountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetCardsLearnedCountResponse)
@@ -77,6 +89,7 @@ func (c *statServiceClient) GetCardsLearnedCount(ctx context.Context, in *GetCar
 type StatServiceServer interface {
 	GetAverageGrade(context.Context, *GetAverageGradeRequest) (*GetAverageGradeResponse, error)
 	GetCardsReviewedCount(context.Context, *GetCardsReviewedCountRequest) (*GetCardsReviewedCountResponse, error)
+	AddRecording(context.Context, *AddRecordingRequest) (*AddRecordingResponse, error)
 	GetCardsLearnedCount(context.Context, *GetCardsLearnedCountRequest) (*GetCardsLearnedCountResponse, error)
 	mustEmbedUnimplementedStatServiceServer()
 }
@@ -93,6 +106,9 @@ func (UnimplementedStatServiceServer) GetAverageGrade(context.Context, *GetAvera
 }
 func (UnimplementedStatServiceServer) GetCardsReviewedCount(context.Context, *GetCardsReviewedCountRequest) (*GetCardsReviewedCountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCardsReviewedCount not implemented")
+}
+func (UnimplementedStatServiceServer) AddRecording(context.Context, *AddRecordingRequest) (*AddRecordingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRecording not implemented")
 }
 func (UnimplementedStatServiceServer) GetCardsLearnedCount(context.Context, *GetCardsLearnedCountRequest) (*GetCardsLearnedCountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCardsLearnedCount not implemented")
@@ -154,6 +170,24 @@ func _StatService_GetCardsReviewedCount_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StatService_AddRecording_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRecordingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StatServiceServer).AddRecording(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StatService_AddRecording_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StatServiceServer).AddRecording(ctx, req.(*AddRecordingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _StatService_GetCardsLearnedCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetCardsLearnedCountRequest)
 	if err := dec(in); err != nil {
@@ -186,6 +220,10 @@ var StatService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCardsReviewedCount",
 			Handler:    _StatService_GetCardsReviewedCount_Handler,
+		},
+		{
+			MethodName: "AddRecording",
+			Handler:    _StatService_AddRecording_Handler,
 		},
 		{
 			MethodName: "GetCardsLearnedCount",

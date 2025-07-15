@@ -4,9 +4,12 @@ package stats;
 
 option go_package = "repeatro.stats.v1;statsv1";
 
+import "google/protobuf/timestamp.proto";
+
 service StatService {
     rpc GetAverageGrade(GetAverageGradeRequest) returns (GetAverageGradeResponse);
     rpc GetCardsReviewedCount(GetCardsReviewedCountRequest) returns (GetCardsReviewedCountResponse);
+    rpc AddRecording(AddRecordingRequest) returns (AddRecordingResponse);
     rpc GetCardsLearnedCount(GetCardsLearnedCountRequest) returns (GetCardsLearnedCountResponse);
 }
 
@@ -29,6 +32,17 @@ message GetCardsReviewedCountRequest {
 
 message GetCardsReviewedCountResponse {
   int32 reviewed_count = 1;
+}
+
+message AddRecordingRequest {
+  string card_id = 1;
+  string deck_id = 2; 
+  google.protobuf.Timestamp created_at = 3;
+  int32 grade = 4;
+}
+
+message AddRecordingResponse {
+  int32 review_id = 1;
 }
 
 
