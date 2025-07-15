@@ -42,7 +42,7 @@ message AddRecordingRequest {
 }
 
 message AddRecordingResponse {
-  int32 review_id = 1;
+  string review_id = 1;
 }
 
 
