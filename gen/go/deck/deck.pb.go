@@ -311,6 +311,7 @@ type Deck struct {
 	Name          string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	Cards         []*Card                `protobuf:"bytes,6,rep,name=cards,proto3" json:"cards,omitempty"`
+	CardsQuantity uint32                 `protobuf:"varint,7,opt,name=cards_quantity,json=cardsQuantity,proto3" json:"cards_quantity,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -385,6 +386,13 @@ func (x *Deck) GetCards() []*Card {
 		return x.Cards
 	}
 	return nil
+}
+
+func (x *Deck) GetCardsQuantity() uint32 {
+	if x != nil {
+		return x.CardsQuantity
+	}
+	return 0
 }
 
 type Card struct {
@@ -540,7 +548,7 @@ const file_deck_deck_proto_rawDesc = "" +
 	".deck.DeckR\x05decks\"4\n" +
 	"\x10CardListResponse\x12 \n" +
 	"\x05cards\x18\x01 \x03(\v2\n" +
-	".deck.CardR\x05cards\"\xd1\x01\n" +
+	".deck.CardR\x05cards\"\xf8\x01\n" +
 	"\x04Deck\x12\x17\n" +
 	"\adeck_id\x18\x01 \x01(\tR\x06deckId\x12\x1d\n" +
 	"\n" +
@@ -550,7 +558,8 @@ const file_deck_deck_proto_rawDesc = "" +
 	"\x04name\x18\x04 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12 \n" +
 	"\x05cards\x18\x06 \x03(\v2\n" +
-	".deck.CardR\x05cards\"\xb7\x03\n" +
+	".deck.CardR\x05cards\x12%\n" +
+	"\x0ecards_quantity\x18\a \x01(\rR\rcardsQuantity\"\xb7\x03\n" +
 	"\x04Card\x12\x17\n" +
 	"\acard_id\x18\x01 \x01(\tR\x06cardId\x12\x1d\n" +
 	"\n" +

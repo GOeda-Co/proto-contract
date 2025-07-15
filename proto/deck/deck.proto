@@ -50,6 +50,7 @@ message Deck {
   string name = 4;
   string description = 5;
   repeated Card cards = 6;
+  uint32 cards_quantity = 7;
 }
 
 message Card {
