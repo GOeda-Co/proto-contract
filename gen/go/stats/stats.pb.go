@@ -352,7 +352,7 @@ func (x *AddRecordingRequest) GetGrade() int32 {
 
 type AddRecordingResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ReviewId      int32                  `protobuf:"varint,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
+	ReviewId      string                 `protobuf:"bytes,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -387,11 +387,11 @@ func (*AddRecordingResponse) Descriptor() ([]byte, []int) {
 	return file_stats_stats_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *AddRecordingResponse) GetReviewId() int32 {
+func (x *AddRecordingResponse) GetReviewId() string {
 	if x != nil {
 		return x.ReviewId
 	}
-	return 0
+	return ""
 }
 
 type GetCardsLearnedCountRequest struct {
@@ -524,7 +524,7 @@ const file_stats_stats_proto_rawDesc = "" +
 	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x14\n" +
 	"\x05grade\x18\x04 \x01(\x05R\x05grade\"3\n" +
 	"\x14AddRecordingResponse\x12\x1b\n" +
-	"\treview_id\x18\x01 \x01(\x05R\breviewId\"\x80\x01\n" +
+	"\treview_id\x18\x01 \x01(\tR\breviewId\"\x80\x01\n" +
 	"\x1bGetCardsLearnedCountRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\adeck_id\x18\x02 \x01(\tR\x06deckId\x12/\n" +
