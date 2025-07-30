@@ -4,9 +4,9 @@ package deck;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
-// import "proto/card/card.proto";
+import "card/card.proto";
 
-option go_package = "repeatro.deck.v1;deckv1";
+option go_package = "github.com/GOeda-Co/proto-contract/gen/go/deck;deckv1";
 
 service DeckService {
   rpc AddDeck(AddDeckRequest) returns (DeckResponse);
@@ -40,7 +40,7 @@ message DeckListResponse {
 }
 
 message CardListResponse {
-  repeated Card cards = 1;
+  repeated card.Card cards = 1;
 }
 
 message Deck {
@@ -49,21 +49,6 @@ message Deck {
   google.protobuf.Timestamp created_at = 3;
   string name = 4;
   string description = 5;
-  repeated Card cards = 6;
+  repeated card.Card cards = 6;
   uint32 cards_quantity = 7;
-}
-
-message Card {
-  string card_id = 1;
-  string created_by = 2;
-  google.protobuf.Timestamp created_at = 3;
-  string word = 4;
-  string translation = 5;
-  double easiness = 6;
-  google.protobuf.Timestamp updated_at = 7;
-  int32 interval = 8;
-  google.protobuf.Timestamp expires_at = 9;
-  int32 repetition_number = 10;
-  string deck_id = 11;
-  repeated string tags = 12;
 }

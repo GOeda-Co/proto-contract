@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package stats;
 
-option go_package = "repeatro.stats.v1;statsv1";
+option go_package = "github.com/GOeda-Co/proto-contract/gen/go/stats;statsv1";
 
 import "google/protobuf/timestamp.proto";
 

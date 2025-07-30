@@ -898,7 +898,7 @@ const file_card_card_proto_rawDesc = "" +
 	"\n" +
 	"DeleteCard\x12\x17.card.DeleteCardRequest\x1a\x18.card.DeleteCardResponse\x12?\n" +
 	"\n" +
-	"AddAnswers\x12\x17.card.AddAnswersRequest\x1a\x18.card.AddAnswersResponseB\x19Z\x17repeatro.card.v1;cardv1b\x06proto3"
+	"AddAnswers\x12\x17.card.AddAnswersRequest\x1a\x18.card.AddAnswersResponseB7Z5github.com/GOeda-Co/proto-contract/gen/go/card;cardv1b\x06proto3"
 
 var (
 	file_card_card_proto_rawDescOnce sync.Once

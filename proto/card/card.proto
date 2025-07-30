@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package card;
 
-option go_package = "repeatro.card.v1;cardv1";
+option go_package = "github.com/GOeda-Co/proto-contract/gen/go/card;cardv1";
 
 import "google/protobuf/timestamp.proto";
 

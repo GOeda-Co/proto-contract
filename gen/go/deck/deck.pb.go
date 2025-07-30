@@ -7,6 +7,7 @@
 package deckv1
 
 import (
+	card "github.com/GOeda-Co/proto-contract/gen/go/card"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -261,7 +262,7 @@ func (x *DeckListResponse) GetDecks() []*Deck {
 
 type CardListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Cards         []*Card                `protobuf:"bytes,1,rep,name=cards,proto3" json:"cards,omitempty"`
+	Cards         []*card.Card           `protobuf:"bytes,1,rep,name=cards,proto3" json:"cards,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -296,7 +297,7 @@ func (*CardListResponse) Descriptor() ([]byte, []int) {
 	return file_deck_deck_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *CardListResponse) GetCards() []*Card {
+func (x *CardListResponse) GetCards() []*card.Card {
 	if x != nil {
 		return x.Cards
 	}
@@ -310,7 +311,7 @@ type Deck struct {
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	Name          string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	Cards         []*Card                `protobuf:"bytes,6,rep,name=cards,proto3" json:"cards,omitempty"`
+	Cards         []*card.Card           `protobuf:"bytes,6,rep,name=cards,proto3" json:"cards,omitempty"`
 	CardsQuantity uint32                 `protobuf:"varint,7,opt,name=cards_quantity,json=cardsQuantity,proto3" json:"cards_quantity,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -381,7 +382,7 @@ func (x *Deck) GetDescription() string {
 	return ""
 }
 
-func (x *Deck) GetCards() []*Card {
+func (x *Deck) GetCards() []*card.Card {
 	if x != nil {
 		return x.Cards
 	}
@@ -395,143 +396,11 @@ func (x *Deck) GetCardsQuantity() uint32 {
 	return 0
 }
 
-type Card struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	CardId           string                 `protobuf:"bytes,1,opt,name=card_id,json=cardId,proto3" json:"card_id,omitempty"`
-	CreatedBy        string                 `protobuf:"bytes,2,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
-	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Word             string                 `protobuf:"bytes,4,opt,name=word,proto3" json:"word,omitempty"`
-	Translation      string                 `protobuf:"bytes,5,opt,name=translation,proto3" json:"translation,omitempty"`
-	Easiness         float64                `protobuf:"fixed64,6,opt,name=easiness,proto3" json:"easiness,omitempty"`
-	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Interval         int32                  `protobuf:"varint,8,opt,name=interval,proto3" json:"interval,omitempty"`
-	ExpiresAt        *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	RepetitionNumber int32                  `protobuf:"varint,10,opt,name=repetition_number,json=repetitionNumber,proto3" json:"repetition_number,omitempty"`
-	DeckId           string                 `protobuf:"bytes,11,opt,name=deck_id,json=deckId,proto3" json:"deck_id,omitempty"`
-	Tags             []string               `protobuf:"bytes,12,rep,name=tags,proto3" json:"tags,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
-}
-
-func (x *Card) Reset() {
-	*x = Card{}
-	mi := &file_deck_deck_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Card) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Card) ProtoMessage() {}
-
-func (x *Card) ProtoReflect() protoreflect.Message {
-	mi := &file_deck_deck_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Card.ProtoReflect.Descriptor instead.
-func (*Card) Descriptor() ([]byte, []int) {
-	return file_deck_deck_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *Card) GetCardId() string {
-	if x != nil {
-		return x.CardId
-	}
-	return ""
-}
-
-func (x *Card) GetCreatedBy() string {
-	if x != nil {
-		return x.CreatedBy
-	}
-	return ""
-}
-
-func (x *Card) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
-func (x *Card) GetWord() string {
-	if x != nil {
-		return x.Word
-	}
-	return ""
-}
-
-func (x *Card) GetTranslation() string {
-	if x != nil {
-		return x.Translation
-	}
-	return ""
-}
-
-func (x *Card) GetEasiness() float64 {
-	if x != nil {
-		return x.Easiness
-	}
-	return 0
-}
-
-func (x *Card) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-func (x *Card) GetInterval() int32 {
-	if x != nil {
-		return x.Interval
-	}
-	return 0
-}
-
-func (x *Card) GetExpiresAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.ExpiresAt
-	}
-	return nil
-}
-
-func (x *Card) GetRepetitionNumber() int32 {
-	if x != nil {
-		return x.RepetitionNumber
-	}
-	return 0
-}
-
-func (x *Card) GetDeckId() string {
-	if x != nil {
-		return x.DeckId
-	}
-	return ""
-}
-
-func (x *Card) GetTags() []string {
-	if x != nil {
-		return x.Tags
-	}
-	return nil
-}
-
 var File_deck_deck_proto protoreflect.FileDescriptor
 
 const file_deck_deck_proto_rawDesc = "" +
 	"\n" +
-	"\x0fdeck/deck.proto\x12\x04deck\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"F\n" +
+	"\x0fdeck/deck.proto\x12\x04deck\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x0fcard/card.proto\"F\n" +
 	"\x0eAddDeckRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\"*\n" +
@@ -548,7 +417,7 @@ const file_deck_deck_proto_rawDesc = "" +
 	".deck.DeckR\x05decks\"4\n" +
 	"\x10CardListResponse\x12 \n" +
 	"\x05cards\x18\x01 \x03(\v2\n" +
-	".deck.CardR\x05cards\"\xf8\x01\n" +
+	".card.CardR\x05cards\"\xf8\x01\n" +
 	"\x04Deck\x12\x17\n" +
 	"\adeck_id\x18\x01 \x01(\tR\x06deckId\x12\x1d\n" +
 	"\n" +
@@ -558,26 +427,8 @@ const file_deck_deck_proto_rawDesc = "" +
 	"\x04name\x18\x04 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12 \n" +
 	"\x05cards\x18\x06 \x03(\v2\n" +
-	".deck.CardR\x05cards\x12%\n" +
-	"\x0ecards_quantity\x18\a \x01(\rR\rcardsQuantity\"\xb7\x03\n" +
-	"\x04Card\x12\x17\n" +
-	"\acard_id\x18\x01 \x01(\tR\x06cardId\x12\x1d\n" +
-	"\n" +
-	"created_by\x18\x02 \x01(\tR\tcreatedBy\x129\n" +
-	"\n" +
-	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x12\n" +
-	"\x04word\x18\x04 \x01(\tR\x04word\x12 \n" +
-	"\vtranslation\x18\x05 \x01(\tR\vtranslation\x12\x1a\n" +
-	"\beasiness\x18\x06 \x01(\x01R\beasiness\x129\n" +
-	"\n" +
-	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x1a\n" +
-	"\binterval\x18\b \x01(\x05R\binterval\x129\n" +
-	"\n" +
-	"expires_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12+\n" +
-	"\x11repetition_number\x18\n" +
-	" \x01(\x05R\x10repetitionNumber\x12\x17\n" +
-	"\adeck_id\x18\v \x01(\tR\x06deckId\x12\x12\n" +
-	"\x04tags\x18\f \x03(\tR\x04tags2\xff\x02\n" +
+	".card.CardR\x05cards\x12%\n" +
+	"\x0ecards_quantity\x18\a \x01(\rR\rcardsQuantity2\xff\x02\n" +
 	"\vDeckService\x123\n" +
 	"\aAddDeck\x12\x14.deck.AddDeckRequest\x1a\x12.deck.DeckResponse\x12>\n" +
 	"\fReadAllDecks\x12\x16.google.protobuf.Empty\x1a\x16.deck.DeckListResponse\x125\n" +
@@ -585,7 +436,7 @@ const file_deck_deck_proto_rawDesc = "" +
 	"\n" +
 	"DeleteDeck\x12\x15.deck.ReadDeckRequest\x1a\x16.google.protobuf.Empty\x12C\n" +
 	"\rAddCardToDeck\x12\x1a.deck.AddCardToDeckRequest\x1a\x16.google.protobuf.Empty\x12B\n" +
-	"\x11ReadCardsFromDeck\x12\x15.deck.ReadDeckRequest\x1a\x16.deck.CardListResponseB\x19Z\x17repeatro.deck.v1;deckv1b\x06proto3"
+	"\x11ReadCardsFromDeck\x12\x15.deck.ReadDeckRequest\x1a\x16.deck.CardListResponseB7Z5github.com/GOeda-Co/proto-contract/gen/go/deck;deckv1b\x06proto3"
 
 var (
 	file_deck_deck_proto_rawDescOnce sync.Once
@@ -599,7 +450,7 @@ func file_deck_deck_proto_rawDescGZIP() []byte {
 	return file_deck_deck_proto_rawDescData
 }
 
-var file_deck_deck_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_deck_deck_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_deck_deck_proto_goTypes = []any{
 	(*AddDeckRequest)(nil),        // 0: deck.AddDeckRequest
 	(*ReadDeckRequest)(nil),       // 1: deck.ReadDeckRequest
@@ -608,36 +459,33 @@ var file_deck_deck_proto_goTypes = []any{
 	(*DeckListResponse)(nil),      // 4: deck.DeckListResponse
 	(*CardListResponse)(nil),      // 5: deck.CardListResponse
 	(*Deck)(nil),                  // 6: deck.Deck
-	(*Card)(nil),                  // 7: deck.Card
+	(*card.Card)(nil),             // 7: card.Card
 	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 	(*emptypb.Empty)(nil),         // 9: google.protobuf.Empty
 }
 var file_deck_deck_proto_depIdxs = []int32{
 	6,  // 0: deck.DeckResponse.deck:type_name -> deck.Deck
 	6,  // 1: deck.DeckListResponse.decks:type_name -> deck.Deck
-	7,  // 2: deck.CardListResponse.cards:type_name -> deck.Card
+	7,  // 2: deck.CardListResponse.cards:type_name -> card.Card
 	8,  // 3: deck.Deck.created_at:type_name -> google.protobuf.Timestamp
-	7,  // 4: deck.Deck.cards:type_name -> deck.Card
-	8,  // 5: deck.Card.created_at:type_name -> google.protobuf.Timestamp
-	8,  // 6: deck.Card.updated_at:type_name -> google.protobuf.Timestamp
-	8,  // 7: deck.Card.expires_at:type_name -> google.protobuf.Timestamp
-	0,  // 8: deck.DeckService.AddDeck:input_type -> deck.AddDeckRequest
-	9,  // 9: deck.DeckService.ReadAllDecks:input_type -> google.protobuf.Empty
-	1,  // 10: deck.DeckService.ReadDeck:input_type -> deck.ReadDeckRequest
-	1,  // 11: deck.DeckService.DeleteDeck:input_type -> deck.ReadDeckRequest
-	2,  // 12: deck.DeckService.AddCardToDeck:input_type -> deck.AddCardToDeckRequest
-	1,  // 13: deck.DeckService.ReadCardsFromDeck:input_type -> deck.ReadDeckRequest
-	3,  // 14: deck.DeckService.AddDeck:output_type -> deck.DeckResponse
-	4,  // 15: deck.DeckService.ReadAllDecks:output_type -> deck.DeckListResponse
-	3,  // 16: deck.DeckService.ReadDeck:output_type -> deck.DeckResponse
-	9,  // 17: deck.DeckService.DeleteDeck:output_type -> google.protobuf.Empty
-	9,  // 18: deck.DeckService.AddCardToDeck:output_type -> google.protobuf.Empty
-	5,  // 19: deck.DeckService.ReadCardsFromDeck:output_type -> deck.CardListResponse
-	14, // [14:20] is the sub-list for method output_type
-	8,  // [8:14] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	7,  // 4: deck.Deck.cards:type_name -> card.Card
+	0,  // 5: deck.DeckService.AddDeck:input_type -> deck.AddDeckRequest
+	9,  // 6: deck.DeckService.ReadAllDecks:input_type -> google.protobuf.Empty
+	1,  // 7: deck.DeckService.ReadDeck:input_type -> deck.ReadDeckRequest
+	1,  // 8: deck.DeckService.DeleteDeck:input_type -> deck.ReadDeckRequest
+	2,  // 9: deck.DeckService.AddCardToDeck:input_type -> deck.AddCardToDeckRequest
+	1,  // 10: deck.DeckService.ReadCardsFromDeck:input_type -> deck.ReadDeckRequest
+	3,  // 11: deck.DeckService.AddDeck:output_type -> deck.DeckResponse
+	4,  // 12: deck.DeckService.ReadAllDecks:output_type -> deck.DeckListResponse
+	3,  // 13: deck.DeckService.ReadDeck:output_type -> deck.DeckResponse
+	9,  // 14: deck.DeckService.DeleteDeck:output_type -> google.protobuf.Empty
+	9,  // 15: deck.DeckService.AddCardToDeck:output_type -> google.protobuf.Empty
+	5,  // 16: deck.DeckService.ReadCardsFromDeck:output_type -> deck.CardListResponse
+	11, // [11:17] is the sub-list for method output_type
+	5,  // [5:11] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_deck_deck_proto_init() }
@@ -651,7 +499,7 @@ func file_deck_deck_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_deck_deck_proto_rawDesc), len(file_deck_deck_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
