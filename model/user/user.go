@@ -1,14 +1,19 @@
 package model
 
 import (
-	"time"
-
 	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 type User struct {
-	UserId           uuid.UUID `json:"user_id" bson:"user_id"`
-	Email            string    `json:"email" bson:"email"`
-	HashedPassword   string    `json:"hashed_password" bson:"hashed_password"`
-	RegistrationDate time.Time `json:"registration_date" bson:"registration_date"`
+	ID       uuid.UUID `gorm:"type:uuid;primaryKey"`
+	Name     string
+	Email    string
+	PassHash []byte
+	IsAdmin  bool
+}
+
+func (u *User) BeforeCreate(tx *gorm.DB) error {
+	u.ID = uuid.New()
+	return nil
 }

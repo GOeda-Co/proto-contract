@@ -23,9 +23,9 @@ type Client struct {
 func New(
 	ctx context.Context,
 	log *slog.Logger,
-	addr string, // Адрес SSO-сервера
-	timeout time.Duration, // Таймаут на выполнение каждой попытки
-	retriesCount int, // Количетсво повторов
+	addr string, 
+	timeout time.Duration,
+	retriesCount int,
 ) (*Client, error) {
 	const op = "grpc.New"
 

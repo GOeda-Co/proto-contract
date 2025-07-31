@@ -5,6 +5,8 @@ package card;
 option go_package = "github.com/GOeda-Co/proto-contract/gen/go/card;cardv1";
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
 
 // The Card service provides endpoints for managing user-created cards
 service CardService {
@@ -13,10 +15,17 @@ service CardService {
   rpc ReadAllCards(ReadAllCardsRequest) returns (ReadAllCardsResponse);
   // This method shows all cards that were created by user
   rpc ReadAllCardsByUser(ReadAllCardsByUserRequest) returns (ReadAllCardsByUserResponse);
+  // Search all public cards
+  rpc SearchAllPublicCards(google.protobuf.Empty) returns (SearchAllPublicCardsResponse);
+  // Search public cards for a specific user
+  rpc SearchUserPublicCards(SearchUserPublicCardsRequest) returns (SearchUserPublicCardsResponse);
+
   rpc UpdateCard(UpdateCardRequest) returns (UpdateCardResponse);
   rpc DeleteCard(DeleteCardRequest) returns (DeleteCardResponse);
   rpc AddAnswers(AddAnswersRequest) returns (AddAnswersResponse);
 }
+
+
 
 // Message for a Card
 message Card {
@@ -32,6 +41,7 @@ message Card {
   int32 repetition_number = 10;
   string deck_id = 11;
   repeated string tags = 12;
+  bool is_public = 13;
 }
 
 // Request and response for AddCard
@@ -61,6 +71,18 @@ message ReadAllCardsByUserResponse {
   repeated Card cards = 1;
 }
 
+message SearchAllPublicCardsResponse {
+  repeated Card cards = 1;
+}
+
+message SearchUserPublicCardsRequest {
+  string user_id = 1;
+}
+
+message SearchUserPublicCardsResponse {
+  repeated Card cards = 1;
+}
+
 
 // Request and response for UpdateCard
 message UpdateCardRequest {
@@ -74,6 +96,7 @@ message UpdateCardRequest {
   int32 repetition_number = 8;
   repeated string tags = 9;
   string user_id = 10;
+  bool is_public = 11;
 }
 
 message UpdateCardResponse {
