@@ -17,6 +17,7 @@ type Deck struct {
 	Description   string      `gorm:"type:varchar(100);" json:"description"`
 	CardsQuantity uint        `gorm:"type:int unsigned;default=0" json:"cards_quantity"`
 	Cards         []card.Card `gorm:"foreignKey:CardId;constraint:OnDelete:CASCADE"`
+	IsPublic      bool        `gorm:"default:false" json:"is_public"`
 }
 
 func (d *Deck) BeforeCreate(tx *gorm.DB) error {

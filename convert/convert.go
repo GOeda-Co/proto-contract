@@ -126,5 +126,17 @@ func FromProtoToModelDeck(deck *deckv1.Deck) (*modelDeck.Deck, error) {
 		Name:          deck.Name,
 		CardsQuantity: uint(deck.CardsQuantity),
 		Description:   deck.Description,
+		IsPublic:      deck.IsPublic,
 	}, nil
+}
+func FromModelToProtoDeck(deck *modelDeck.Deck) *deckv1.Deck {
+	return &deckv1.Deck{
+		DeckId:        deck.DeckId.String(),
+		CreatedBy:     deck.CreatedBy.String(),
+		CreatedAt:     timestamppb.New(deck.CreatedAt),
+		Name:          deck.Name,
+		Description:   deck.Description,
+		CardsQuantity: uint32(deck.CardsQuantity),
+		IsPublic:      deck.IsPublic,
+	}
 }

@@ -12,6 +12,8 @@ service DeckService {
   rpc AddDeck(AddDeckRequest) returns (DeckResponse);
   rpc ReadAllDecks(google.protobuf.Empty) returns (DeckListResponse);
   rpc ReadDeck(ReadDeckRequest) returns (DeckResponse);
+  rpc SearchAllPublicDecks(google.protobuf.Empty) returns (SearchAllPublicDecksResponse);
+  rpc SearchUserPublicDecks(SearchUserPublicDecksRequest) returns (SearchUserPublicDecksResponse);
   rpc DeleteDeck(ReadDeckRequest) returns (google.protobuf.Empty);
   rpc AddCardToDeck(AddCardToDeckRequest) returns (google.protobuf.Empty);
   rpc ReadCardsFromDeck(ReadDeckRequest) returns (CardListResponse);
@@ -24,6 +26,18 @@ message AddDeckRequest {
 
 message ReadDeckRequest {
   string deck_id = 1;
+}
+
+message SearchAllPublicDecksResponse {
+  repeated Deck decks = 1;
+}
+
+message SearchUserPublicDecksRequest {
+  string user_id = 1;
+}
+
+message SearchUserPublicDecksResponse {
+  repeated Deck decks = 1;
 }
 
 message AddCardToDeckRequest {
@@ -51,4 +65,5 @@ message Deck {
   string description = 5;
   repeated card.Card cards = 6;
   uint32 cards_quantity = 7;
+  bool is_public = 8;
 }

@@ -120,6 +120,138 @@ func (x *ReadDeckRequest) GetDeckId() string {
 	return ""
 }
 
+type SearchAllPublicDecksResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Decks         []*Deck                `protobuf:"bytes,1,rep,name=decks,proto3" json:"decks,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SearchAllPublicDecksResponse) Reset() {
+	*x = SearchAllPublicDecksResponse{}
+	mi := &file_deck_deck_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchAllPublicDecksResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchAllPublicDecksResponse) ProtoMessage() {}
+
+func (x *SearchAllPublicDecksResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_deck_deck_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchAllPublicDecksResponse.ProtoReflect.Descriptor instead.
+func (*SearchAllPublicDecksResponse) Descriptor() ([]byte, []int) {
+	return file_deck_deck_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *SearchAllPublicDecksResponse) GetDecks() []*Deck {
+	if x != nil {
+		return x.Decks
+	}
+	return nil
+}
+
+type SearchUserPublicDecksRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SearchUserPublicDecksRequest) Reset() {
+	*x = SearchUserPublicDecksRequest{}
+	mi := &file_deck_deck_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchUserPublicDecksRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchUserPublicDecksRequest) ProtoMessage() {}
+
+func (x *SearchUserPublicDecksRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_deck_deck_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchUserPublicDecksRequest.ProtoReflect.Descriptor instead.
+func (*SearchUserPublicDecksRequest) Descriptor() ([]byte, []int) {
+	return file_deck_deck_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *SearchUserPublicDecksRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type SearchUserPublicDecksResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Decks         []*Deck                `protobuf:"bytes,1,rep,name=decks,proto3" json:"decks,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SearchUserPublicDecksResponse) Reset() {
+	*x = SearchUserPublicDecksResponse{}
+	mi := &file_deck_deck_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchUserPublicDecksResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchUserPublicDecksResponse) ProtoMessage() {}
+
+func (x *SearchUserPublicDecksResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_deck_deck_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchUserPublicDecksResponse.ProtoReflect.Descriptor instead.
+func (*SearchUserPublicDecksResponse) Descriptor() ([]byte, []int) {
+	return file_deck_deck_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *SearchUserPublicDecksResponse) GetDecks() []*Deck {
+	if x != nil {
+		return x.Decks
+	}
+	return nil
+}
+
 type AddCardToDeckRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CardId        string                 `protobuf:"bytes,1,opt,name=card_id,json=cardId,proto3" json:"card_id,omitempty"`
@@ -130,7 +262,7 @@ type AddCardToDeckRequest struct {
 
 func (x *AddCardToDeckRequest) Reset() {
 	*x = AddCardToDeckRequest{}
-	mi := &file_deck_deck_proto_msgTypes[2]
+	mi := &file_deck_deck_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -142,7 +274,7 @@ func (x *AddCardToDeckRequest) String() string {
 func (*AddCardToDeckRequest) ProtoMessage() {}
 
 func (x *AddCardToDeckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_deck_deck_proto_msgTypes[2]
+	mi := &file_deck_deck_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -155,7 +287,7 @@ func (x *AddCardToDeckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddCardToDeckRequest.ProtoReflect.Descriptor instead.
 func (*AddCardToDeckRequest) Descriptor() ([]byte, []int) {
-	return file_deck_deck_proto_rawDescGZIP(), []int{2}
+	return file_deck_deck_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *AddCardToDeckRequest) GetCardId() string {
@@ -181,7 +313,7 @@ type DeckResponse struct {
 
 func (x *DeckResponse) Reset() {
 	*x = DeckResponse{}
-	mi := &file_deck_deck_proto_msgTypes[3]
+	mi := &file_deck_deck_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -193,7 +325,7 @@ func (x *DeckResponse) String() string {
 func (*DeckResponse) ProtoMessage() {}
 
 func (x *DeckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_deck_deck_proto_msgTypes[3]
+	mi := &file_deck_deck_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -206,7 +338,7 @@ func (x *DeckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeckResponse.ProtoReflect.Descriptor instead.
 func (*DeckResponse) Descriptor() ([]byte, []int) {
-	return file_deck_deck_proto_rawDescGZIP(), []int{3}
+	return file_deck_deck_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeckResponse) GetDeck() *Deck {
@@ -225,7 +357,7 @@ type DeckListResponse struct {
 
 func (x *DeckListResponse) Reset() {
 	*x = DeckListResponse{}
-	mi := &file_deck_deck_proto_msgTypes[4]
+	mi := &file_deck_deck_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -237,7 +369,7 @@ func (x *DeckListResponse) String() string {
 func (*DeckListResponse) ProtoMessage() {}
 
 func (x *DeckListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_deck_deck_proto_msgTypes[4]
+	mi := &file_deck_deck_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -250,7 +382,7 @@ func (x *DeckListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeckListResponse.ProtoReflect.Descriptor instead.
 func (*DeckListResponse) Descriptor() ([]byte, []int) {
-	return file_deck_deck_proto_rawDescGZIP(), []int{4}
+	return file_deck_deck_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DeckListResponse) GetDecks() []*Deck {
@@ -269,7 +401,7 @@ type CardListResponse struct {
 
 func (x *CardListResponse) Reset() {
 	*x = CardListResponse{}
-	mi := &file_deck_deck_proto_msgTypes[5]
+	mi := &file_deck_deck_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -281,7 +413,7 @@ func (x *CardListResponse) String() string {
 func (*CardListResponse) ProtoMessage() {}
 
 func (x *CardListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_deck_deck_proto_msgTypes[5]
+	mi := &file_deck_deck_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -294,7 +426,7 @@ func (x *CardListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CardListResponse.ProtoReflect.Descriptor instead.
 func (*CardListResponse) Descriptor() ([]byte, []int) {
-	return file_deck_deck_proto_rawDescGZIP(), []int{5}
+	return file_deck_deck_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CardListResponse) GetCards() []*card.Card {
@@ -313,13 +445,14 @@ type Deck struct {
 	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	Cards         []*card.Card           `protobuf:"bytes,6,rep,name=cards,proto3" json:"cards,omitempty"`
 	CardsQuantity uint32                 `protobuf:"varint,7,opt,name=cards_quantity,json=cardsQuantity,proto3" json:"cards_quantity,omitempty"`
+	IsPublic      bool                   `protobuf:"varint,8,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Deck) Reset() {
 	*x = Deck{}
-	mi := &file_deck_deck_proto_msgTypes[6]
+	mi := &file_deck_deck_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -331,7 +464,7 @@ func (x *Deck) String() string {
 func (*Deck) ProtoMessage() {}
 
 func (x *Deck) ProtoReflect() protoreflect.Message {
-	mi := &file_deck_deck_proto_msgTypes[6]
+	mi := &file_deck_deck_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -344,7 +477,7 @@ func (x *Deck) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Deck.ProtoReflect.Descriptor instead.
 func (*Deck) Descriptor() ([]byte, []int) {
-	return file_deck_deck_proto_rawDescGZIP(), []int{6}
+	return file_deck_deck_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Deck) GetDeckId() string {
@@ -396,6 +529,13 @@ func (x *Deck) GetCardsQuantity() uint32 {
 	return 0
 }
 
+func (x *Deck) GetIsPublic() bool {
+	if x != nil {
+		return x.IsPublic
+	}
+	return false
+}
+
 var File_deck_deck_proto protoreflect.FileDescriptor
 
 const file_deck_deck_proto_rawDesc = "" +
@@ -405,7 +545,15 @@ const file_deck_deck_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\"*\n" +
 	"\x0fReadDeckRequest\x12\x17\n" +
-	"\adeck_id\x18\x01 \x01(\tR\x06deckId\"H\n" +
+	"\adeck_id\x18\x01 \x01(\tR\x06deckId\"@\n" +
+	"\x1cSearchAllPublicDecksResponse\x12 \n" +
+	"\x05decks\x18\x01 \x03(\v2\n" +
+	".deck.DeckR\x05decks\"7\n" +
+	"\x1cSearchUserPublicDecksRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"A\n" +
+	"\x1dSearchUserPublicDecksResponse\x12 \n" +
+	"\x05decks\x18\x01 \x03(\v2\n" +
+	".deck.DeckR\x05decks\"H\n" +
 	"\x14AddCardToDeckRequest\x12\x17\n" +
 	"\acard_id\x18\x01 \x01(\tR\x06cardId\x12\x17\n" +
 	"\adeck_id\x18\x02 \x01(\tR\x06deckId\".\n" +
@@ -417,7 +565,7 @@ const file_deck_deck_proto_rawDesc = "" +
 	".deck.DeckR\x05decks\"4\n" +
 	"\x10CardListResponse\x12 \n" +
 	"\x05cards\x18\x01 \x03(\v2\n" +
-	".card.CardR\x05cards\"\xf8\x01\n" +
+	".card.CardR\x05cards\"\x95\x02\n" +
 	"\x04Deck\x12\x17\n" +
 	"\adeck_id\x18\x01 \x01(\tR\x06deckId\x12\x1d\n" +
 	"\n" +
@@ -428,11 +576,14 @@ const file_deck_deck_proto_rawDesc = "" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12 \n" +
 	"\x05cards\x18\x06 \x03(\v2\n" +
 	".card.CardR\x05cards\x12%\n" +
-	"\x0ecards_quantity\x18\a \x01(\rR\rcardsQuantity2\xff\x02\n" +
+	"\x0ecards_quantity\x18\a \x01(\rR\rcardsQuantity\x12\x1b\n" +
+	"\tis_public\x18\b \x01(\bR\bisPublic2\xb5\x04\n" +
 	"\vDeckService\x123\n" +
 	"\aAddDeck\x12\x14.deck.AddDeckRequest\x1a\x12.deck.DeckResponse\x12>\n" +
 	"\fReadAllDecks\x12\x16.google.protobuf.Empty\x1a\x16.deck.DeckListResponse\x125\n" +
-	"\bReadDeck\x12\x15.deck.ReadDeckRequest\x1a\x12.deck.DeckResponse\x12;\n" +
+	"\bReadDeck\x12\x15.deck.ReadDeckRequest\x1a\x12.deck.DeckResponse\x12R\n" +
+	"\x14SearchAllPublicDecks\x12\x16.google.protobuf.Empty\x1a\".deck.SearchAllPublicDecksResponse\x12`\n" +
+	"\x15SearchUserPublicDecks\x12\".deck.SearchUserPublicDecksRequest\x1a#.deck.SearchUserPublicDecksResponse\x12;\n" +
 	"\n" +
 	"DeleteDeck\x12\x15.deck.ReadDeckRequest\x1a\x16.google.protobuf.Empty\x12C\n" +
 	"\rAddCardToDeck\x12\x1a.deck.AddCardToDeckRequest\x1a\x16.google.protobuf.Empty\x12B\n" +
@@ -450,42 +601,51 @@ func file_deck_deck_proto_rawDescGZIP() []byte {
 	return file_deck_deck_proto_rawDescData
 }
 
-var file_deck_deck_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_deck_deck_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_deck_deck_proto_goTypes = []any{
-	(*AddDeckRequest)(nil),        // 0: deck.AddDeckRequest
-	(*ReadDeckRequest)(nil),       // 1: deck.ReadDeckRequest
-	(*AddCardToDeckRequest)(nil),  // 2: deck.AddCardToDeckRequest
-	(*DeckResponse)(nil),          // 3: deck.DeckResponse
-	(*DeckListResponse)(nil),      // 4: deck.DeckListResponse
-	(*CardListResponse)(nil),      // 5: deck.CardListResponse
-	(*Deck)(nil),                  // 6: deck.Deck
-	(*card.Card)(nil),             // 7: card.Card
-	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),         // 9: google.protobuf.Empty
+	(*AddDeckRequest)(nil),                // 0: deck.AddDeckRequest
+	(*ReadDeckRequest)(nil),               // 1: deck.ReadDeckRequest
+	(*SearchAllPublicDecksResponse)(nil),  // 2: deck.SearchAllPublicDecksResponse
+	(*SearchUserPublicDecksRequest)(nil),  // 3: deck.SearchUserPublicDecksRequest
+	(*SearchUserPublicDecksResponse)(nil), // 4: deck.SearchUserPublicDecksResponse
+	(*AddCardToDeckRequest)(nil),          // 5: deck.AddCardToDeckRequest
+	(*DeckResponse)(nil),                  // 6: deck.DeckResponse
+	(*DeckListResponse)(nil),              // 7: deck.DeckListResponse
+	(*CardListResponse)(nil),              // 8: deck.CardListResponse
+	(*Deck)(nil),                          // 9: deck.Deck
+	(*card.Card)(nil),                     // 10: card.Card
+	(*timestamppb.Timestamp)(nil),         // 11: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),                 // 12: google.protobuf.Empty
 }
 var file_deck_deck_proto_depIdxs = []int32{
-	6,  // 0: deck.DeckResponse.deck:type_name -> deck.Deck
-	6,  // 1: deck.DeckListResponse.decks:type_name -> deck.Deck
-	7,  // 2: deck.CardListResponse.cards:type_name -> card.Card
-	8,  // 3: deck.Deck.created_at:type_name -> google.protobuf.Timestamp
-	7,  // 4: deck.Deck.cards:type_name -> card.Card
-	0,  // 5: deck.DeckService.AddDeck:input_type -> deck.AddDeckRequest
-	9,  // 6: deck.DeckService.ReadAllDecks:input_type -> google.protobuf.Empty
-	1,  // 7: deck.DeckService.ReadDeck:input_type -> deck.ReadDeckRequest
-	1,  // 8: deck.DeckService.DeleteDeck:input_type -> deck.ReadDeckRequest
-	2,  // 9: deck.DeckService.AddCardToDeck:input_type -> deck.AddCardToDeckRequest
-	1,  // 10: deck.DeckService.ReadCardsFromDeck:input_type -> deck.ReadDeckRequest
-	3,  // 11: deck.DeckService.AddDeck:output_type -> deck.DeckResponse
-	4,  // 12: deck.DeckService.ReadAllDecks:output_type -> deck.DeckListResponse
-	3,  // 13: deck.DeckService.ReadDeck:output_type -> deck.DeckResponse
-	9,  // 14: deck.DeckService.DeleteDeck:output_type -> google.protobuf.Empty
-	9,  // 15: deck.DeckService.AddCardToDeck:output_type -> google.protobuf.Empty
-	5,  // 16: deck.DeckService.ReadCardsFromDeck:output_type -> deck.CardListResponse
-	11, // [11:17] is the sub-list for method output_type
-	5,  // [5:11] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	9,  // 0: deck.SearchAllPublicDecksResponse.decks:type_name -> deck.Deck
+	9,  // 1: deck.SearchUserPublicDecksResponse.decks:type_name -> deck.Deck
+	9,  // 2: deck.DeckResponse.deck:type_name -> deck.Deck
+	9,  // 3: deck.DeckListResponse.decks:type_name -> deck.Deck
+	10, // 4: deck.CardListResponse.cards:type_name -> card.Card
+	11, // 5: deck.Deck.created_at:type_name -> google.protobuf.Timestamp
+	10, // 6: deck.Deck.cards:type_name -> card.Card
+	0,  // 7: deck.DeckService.AddDeck:input_type -> deck.AddDeckRequest
+	12, // 8: deck.DeckService.ReadAllDecks:input_type -> google.protobuf.Empty
+	1,  // 9: deck.DeckService.ReadDeck:input_type -> deck.ReadDeckRequest
+	12, // 10: deck.DeckService.SearchAllPublicDecks:input_type -> google.protobuf.Empty
+	3,  // 11: deck.DeckService.SearchUserPublicDecks:input_type -> deck.SearchUserPublicDecksRequest
+	1,  // 12: deck.DeckService.DeleteDeck:input_type -> deck.ReadDeckRequest
+	5,  // 13: deck.DeckService.AddCardToDeck:input_type -> deck.AddCardToDeckRequest
+	1,  // 14: deck.DeckService.ReadCardsFromDeck:input_type -> deck.ReadDeckRequest
+	6,  // 15: deck.DeckService.AddDeck:output_type -> deck.DeckResponse
+	7,  // 16: deck.DeckService.ReadAllDecks:output_type -> deck.DeckListResponse
+	6,  // 17: deck.DeckService.ReadDeck:output_type -> deck.DeckResponse
+	2,  // 18: deck.DeckService.SearchAllPublicDecks:output_type -> deck.SearchAllPublicDecksResponse
+	4,  // 19: deck.DeckService.SearchUserPublicDecks:output_type -> deck.SearchUserPublicDecksResponse
+	12, // 20: deck.DeckService.DeleteDeck:output_type -> google.protobuf.Empty
+	12, // 21: deck.DeckService.AddCardToDeck:output_type -> google.protobuf.Empty
+	8,  // 22: deck.DeckService.ReadCardsFromDeck:output_type -> deck.CardListResponse
+	15, // [15:23] is the sub-list for method output_type
+	7,  // [7:15] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_deck_deck_proto_init() }
@@ -499,7 +659,7 @@ func file_deck_deck_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_deck_deck_proto_rawDesc), len(file_deck_deck_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

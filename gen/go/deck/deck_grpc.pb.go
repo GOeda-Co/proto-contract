@@ -20,12 +20,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DeckService_AddDeck_FullMethodName           = "/deck.DeckService/AddDeck"
-	DeckService_ReadAllDecks_FullMethodName      = "/deck.DeckService/ReadAllDecks"
-	DeckService_ReadDeck_FullMethodName          = "/deck.DeckService/ReadDeck"
-	DeckService_DeleteDeck_FullMethodName        = "/deck.DeckService/DeleteDeck"
-	DeckService_AddCardToDeck_FullMethodName     = "/deck.DeckService/AddCardToDeck"
-	DeckService_ReadCardsFromDeck_FullMethodName = "/deck.DeckService/ReadCardsFromDeck"
+	DeckService_AddDeck_FullMethodName               = "/deck.DeckService/AddDeck"
+	DeckService_ReadAllDecks_FullMethodName          = "/deck.DeckService/ReadAllDecks"
+	DeckService_ReadDeck_FullMethodName              = "/deck.DeckService/ReadDeck"
+	DeckService_SearchAllPublicDecks_FullMethodName  = "/deck.DeckService/SearchAllPublicDecks"
+	DeckService_SearchUserPublicDecks_FullMethodName = "/deck.DeckService/SearchUserPublicDecks"
+	DeckService_DeleteDeck_FullMethodName            = "/deck.DeckService/DeleteDeck"
+	DeckService_AddCardToDeck_FullMethodName         = "/deck.DeckService/AddCardToDeck"
+	DeckService_ReadCardsFromDeck_FullMethodName     = "/deck.DeckService/ReadCardsFromDeck"
 )
 
 // DeckServiceClient is the client API for DeckService service.
@@ -35,6 +37,8 @@ type DeckServiceClient interface {
 	AddDeck(ctx context.Context, in *AddDeckRequest, opts ...grpc.CallOption) (*DeckResponse, error)
 	ReadAllDecks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*DeckListResponse, error)
 	ReadDeck(ctx context.Context, in *ReadDeckRequest, opts ...grpc.CallOption) (*DeckResponse, error)
+	SearchAllPublicDecks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SearchAllPublicDecksResponse, error)
+	SearchUserPublicDecks(ctx context.Context, in *SearchUserPublicDecksRequest, opts ...grpc.CallOption) (*SearchUserPublicDecksResponse, error)
 	DeleteDeck(ctx context.Context, in *ReadDeckRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	AddCardToDeck(ctx context.Context, in *AddCardToDeckRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ReadCardsFromDeck(ctx context.Context, in *ReadDeckRequest, opts ...grpc.CallOption) (*CardListResponse, error)
@@ -78,6 +82,26 @@ func (c *deckServiceClient) ReadDeck(ctx context.Context, in *ReadDeckRequest, o
 	return out, nil
 }
 
+func (c *deckServiceClient) SearchAllPublicDecks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SearchAllPublicDecksResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SearchAllPublicDecksResponse)
+	err := c.cc.Invoke(ctx, DeckService_SearchAllPublicDecks_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deckServiceClient) SearchUserPublicDecks(ctx context.Context, in *SearchUserPublicDecksRequest, opts ...grpc.CallOption) (*SearchUserPublicDecksResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SearchUserPublicDecksResponse)
+	err := c.cc.Invoke(ctx, DeckService_SearchUserPublicDecks_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deckServiceClient) DeleteDeck(ctx context.Context, in *ReadDeckRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
@@ -115,6 +139,8 @@ type DeckServiceServer interface {
 	AddDeck(context.Context, *AddDeckRequest) (*DeckResponse, error)
 	ReadAllDecks(context.Context, *emptypb.Empty) (*DeckListResponse, error)
 	ReadDeck(context.Context, *ReadDeckRequest) (*DeckResponse, error)
+	SearchAllPublicDecks(context.Context, *emptypb.Empty) (*SearchAllPublicDecksResponse, error)
+	SearchUserPublicDecks(context.Context, *SearchUserPublicDecksRequest) (*SearchUserPublicDecksResponse, error)
 	DeleteDeck(context.Context, *ReadDeckRequest) (*emptypb.Empty, error)
 	AddCardToDeck(context.Context, *AddCardToDeckRequest) (*emptypb.Empty, error)
 	ReadCardsFromDeck(context.Context, *ReadDeckRequest) (*CardListResponse, error)
@@ -136,6 +162,12 @@ func (UnimplementedDeckServiceServer) ReadAllDecks(context.Context, *emptypb.Emp
 }
 func (UnimplementedDeckServiceServer) ReadDeck(context.Context, *ReadDeckRequest) (*DeckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadDeck not implemented")
+}
+func (UnimplementedDeckServiceServer) SearchAllPublicDecks(context.Context, *emptypb.Empty) (*SearchAllPublicDecksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchAllPublicDecks not implemented")
+}
+func (UnimplementedDeckServiceServer) SearchUserPublicDecks(context.Context, *SearchUserPublicDecksRequest) (*SearchUserPublicDecksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchUserPublicDecks not implemented")
 }
 func (UnimplementedDeckServiceServer) DeleteDeck(context.Context, *ReadDeckRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeck not implemented")
@@ -221,6 +253,42 @@ func _DeckService_ReadDeck_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeckService_SearchAllPublicDecks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeckServiceServer).SearchAllPublicDecks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeckService_SearchAllPublicDecks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeckServiceServer).SearchAllPublicDecks(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeckService_SearchUserPublicDecks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchUserPublicDecksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeckServiceServer).SearchUserPublicDecks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeckService_SearchUserPublicDecks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeckServiceServer).SearchUserPublicDecks(ctx, req.(*SearchUserPublicDecksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeckService_DeleteDeck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReadDeckRequest)
 	if err := dec(in); err != nil {
@@ -293,6 +361,14 @@ var DeckService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReadDeck",
 			Handler:    _DeckService_ReadDeck_Handler,
+		},
+		{
+			MethodName: "SearchAllPublicDecks",
+			Handler:    _DeckService_SearchAllPublicDecks_Handler,
+		},
+		{
+			MethodName: "SearchUserPublicDecks",
+			Handler:    _DeckService_SearchUserPublicDecks_Handler,
 		},
 		{
 			MethodName: "DeleteDeck",
