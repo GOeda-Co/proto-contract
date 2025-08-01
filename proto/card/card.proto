@@ -12,9 +12,9 @@ import "google/protobuf/empty.proto";
 service CardService {
   rpc AddCard(AddCardRequest) returns (AddCardResponse);
   // This method shows all cards that are ready for learning (expires_time < time.now())
-  rpc ReadAllCards(ReadAllCardsRequest) returns (ReadAllCardsResponse);
+  rpc ReadAllOwnCardsToLearn(google.protobuf.Empty) returns (ReadAllCardsToLearnResponse);
   // This method shows all cards that were created by user
-  rpc ReadAllCardsByUser(ReadAllCardsByUserRequest) returns (ReadAllCardsByUserResponse);
+  rpc ReadAllOwnCards(google.protobuf.Empty) returns (ReadAllOwnCardsResponse);
   // Search all public cards
   rpc SearchAllPublicCards(google.protobuf.Empty) returns (SearchAllPublicCardsResponse);
   // Search public cards for a specific user
@@ -53,21 +53,11 @@ message AddCardResponse {
   Card card = 1;
 }
 
-// Request and response for ReadAllCards
-message ReadAllCardsRequest {
-  string user_id = 1;
-}
-
-
-message ReadAllCardsResponse {
+message ReadAllCardsToLearnResponse {
   repeated Card cards = 1;
 }
 
-message ReadAllCardsByUserRequest {
-  string user_id = 1;
-}
-
-message ReadAllCardsByUserResponse {
+message ReadAllOwnCardsResponse {
   repeated Card cards = 1;
 }
 
@@ -82,7 +72,6 @@ message SearchUserPublicCardsRequest {
 message SearchUserPublicCardsResponse {
   repeated Card cards = 1;
 }
-
 
 // Request and response for UpdateCard
 message UpdateCardRequest {
@@ -106,7 +95,6 @@ message UpdateCardResponse {
 // Request and response for DeleteCard
 message DeleteCardRequest {
   string card_id = 1;
-  string user_id = 2;
 }
 
 message DeleteCardResponse {
