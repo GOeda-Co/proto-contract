@@ -14,8 +14,10 @@ service Auth {
   rpc Login (LoginRequest) returns (LoginResponse);
   // IsAdmin check that user has access for special functionality
   rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
-  //FetcheMe sends current user information
+  // FetcheMe sends current user information
   rpc FetchMe (google.protobuf.Empty) returns (FetchMeResponse);
+  // Register New App
+  rpc RegisterApp (RegisterAppRequest) returns (RegisterAppResponse);
 }
 
 message RegisterRequest {
@@ -54,3 +56,11 @@ message FetchMeResponse {
   string name = 3;
 }
 
+message RegisterAppRequest {
+  string name = 1; 
+  string secret = 2; // Secret key of app to register
+}
+
+message RegisterAppResponse {
+  string app_id = 1; // ID of the registered app (autoincrement uint)
+}
