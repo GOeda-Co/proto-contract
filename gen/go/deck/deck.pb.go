@@ -28,6 +28,7 @@ type AddDeckRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	IsPublic      bool                   `protobuf:"varint,3,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -74,6 +75,13 @@ func (x *AddDeckRequest) GetDescription() string {
 		return x.Description
 	}
 	return ""
+}
+
+func (x *AddDeckRequest) GetIsPublic() bool {
+	if x != nil {
+		return x.IsPublic
+	}
+	return false
 }
 
 type ReadDeckRequest struct {
@@ -540,10 +548,11 @@ var File_deck_deck_proto protoreflect.FileDescriptor
 
 const file_deck_deck_proto_rawDesc = "" +
 	"\n" +
-	"\x0fdeck/deck.proto\x12\x04deck\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x0fcard/card.proto\"F\n" +
+	"\x0fdeck/deck.proto\x12\x04deck\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x0fcard/card.proto\"c\n" +
 	"\x0eAddDeckRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
-	"\vdescription\x18\x02 \x01(\tR\vdescription\"*\n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x1b\n" +
+	"\tis_public\x18\x03 \x01(\bR\bisPublic\"*\n" +
 	"\x0fReadDeckRequest\x12\x17\n" +
 	"\adeck_id\x18\x01 \x01(\tR\x06deckId\"@\n" +
 	"\x1cSearchAllPublicDecksResponse\x12 \n" +

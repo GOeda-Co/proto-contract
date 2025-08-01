@@ -22,6 +22,7 @@ service DeckService {
 message AddDeckRequest {
   string name = 1;
   string description = 2;
+  bool is_public = 3;
 }
 
 message ReadDeckRequest {

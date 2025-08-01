@@ -15,7 +15,7 @@ type Deck struct {
 	CreatedAt     time.Time   `gorm:"autoCreateTime" json:"created_at"`
 	Name          string      `gorm:"type:varchar(100);not null;default:null" json:"name"`
 	Description   string      `gorm:"type:varchar(100);" json:"description"`
-	CardsQuantity uint        `gorm:"type:int unsigned;default=0" json:"cards_quantity"`
+	CardsQuantity uint        `gorm:"default=0" json:"cards_quantity"`
 	Cards         []card.Card `gorm:"foreignKey:CardId;constraint:OnDelete:CASCADE"`
 	IsPublic      bool        `gorm:"default:false" json:"is_public"`
 }
